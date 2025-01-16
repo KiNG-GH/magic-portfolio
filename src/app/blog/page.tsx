@@ -1,8 +1,8 @@
-import { Column, Flex, Heading } from '@/once-ui/components';
+import { Column, Flex, RevealFx, Text, Heading } from '@/once-ui/components';
 import { Mailchimp } from '@/components';
 import { Posts } from '@/components/blog/Posts';
 import { baseURL } from '@/app/resources'
-import { blog, person, newsletter } from '@/app/resources/content';
+import { blog, person } from '@/app/resources/content';
 
 export async function generateMetadata() {
 
@@ -65,14 +65,20 @@ export default function Blog() {
 						variant="display-strong-s">
 						{blog.title}
 				</Heading>
+				<RevealFx
+					translateY="8" delay={0.2} fillWidth justifyContent="flex-start" paddingBottom="m">
+					<Text
+						wrap="balance"
+						onBackground="neutral-weak"
+						variant="heading-default-xl">
+						{blog.description}
+					</Text>
+				</RevealFx>
 			<Column
 				fillWidth flex={1}>
 				<Posts range={[1,3]} thumbnail/>
 				<Posts range={[4]} columns="2"/>
 			</Column>
-				{newsletter.display && (
-						<Mailchimp newsletter={newsletter} />
-				)}
 			</Column>
     );
 }
